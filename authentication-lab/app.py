@@ -18,14 +18,14 @@ app.config['SECRET_KEY'] = 'super-secret-key'
 @app.route('/', methods=['GET', 'POST'])
 def signin():
     error = ""
-   if request.method == 'POST':
+if request.method == 'POST':
        email = request.form['email']
        password = request.form['password']
-        try:
+try:
             login_session['user'] = 
 auth.sign_in_with_email_and_password(email, password)
            return redirect(url_for('home'))
-       except:
+except:
            error = "Authentication failed"
    return render_template("add_tweet.html")
 
