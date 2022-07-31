@@ -8,7 +8,8 @@ thisdict = {  apiKey: "AIzaSyBTD1_WQUBJ5t7UWfFc9xHJLCHG_o0oIhU",
   "storageBucket": "fir-a0dbe.appspot.com",
   "messagingSenderId": "958079824524",
   "appId": "1:958079824524:web:cbe0f305dc58bd756141a9",
-  "measurementId": "G-EY4EWX8E62"
+  "measurementId": "G-EY4EWX8E62",
+  "databaseURL": "https://fir-a0dbe-default-rtdb.firebaseio.com/"
 }
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -55,7 +56,9 @@ def add_tweet():
 
 
 
-
+firebase=pyrebase.initialize_app(config)
+auth = firebase.auth()
+db = firebase.database()
 
 if __name__ == '__main__':
     app.run(debug=True)
