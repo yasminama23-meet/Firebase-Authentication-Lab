@@ -53,21 +53,23 @@ def signup():
 
 
 
-
 @app.route('/add_tweet', methods=['GET', 'POST'])
 def add_tweet():
     if request.method == 'POST':
         try:
-            tweet = {"name": request.form['name'],"content": request.form['content']}
+            tweet = {"name": request.form['name'],"content": request.form['content'], "uid": login_session['user']['localId']}
             db.child("tweet").push(tweet)
         except:
-            print("Couldn't add tweet")
+            print(" sorry Couldn't add tweet , try again ")
     return render_template("add_tweet.html")
 
 
 
 
-#@app.route('/all_tweets', methods=['GET', 'POST'])
+@app.route('/all_tweets', methods=['GET', 'POST'])
+def all_tweet():
+    tweet=db.child("tweet").get().val()
+return render_template("all_tweet.html")
 
 
 
